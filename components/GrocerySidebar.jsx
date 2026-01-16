@@ -12,15 +12,8 @@ import {
   Menu
 } from 'lucide-react';
 import { CATEGORIES } from '../constants';
-import { CategoryId } from '../types';
 
-interface GrocerySidebarProps {
-  selectedCategory: CategoryId;
-  onSelectCategory: (id: CategoryId) => void;
-  className?: string;
-}
-
-const iconMap: Record<string, React.ElementType> = {
+const iconMap = {
   Apple,
   Carrot,
   Milk,
@@ -30,7 +23,7 @@ const iconMap: Record<string, React.ElementType> = {
   Store
 };
 
-export const GrocerySidebar: React.FC<GrocerySidebarProps> = ({ 
+export const GrocerySidebar = ({ 
   selectedCategory, 
   onSelectCategory,
   className = ''
