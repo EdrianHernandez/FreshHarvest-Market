@@ -1,6 +1,8 @@
-import { Category, Product, CategoryId } from './types';
-
-export const CATEGORIES: { id: CategoryId; name: string; icon: string }[] = [
+/**
+ * CATEGORIES
+ * An array of available shopping categories with their associated icons.
+ */
+export const CATEGORIES = [
   { id: 'all', name: 'All Items', icon: 'Store' },
   { id: 'fruits', name: 'Fresh Fruits', icon: 'Apple' },
   { id: 'vegetables', name: 'Vegetables', icon: 'Carrot' },
@@ -10,7 +12,11 @@ export const CATEGORIES: { id: CategoryId; name: string; icon: string }[] = [
   { id: 'pantry', name: 'Pantry', icon: 'Package' },
 ];
 
-export const PRODUCTS: Product[] = [
+/**
+ * PRODUCTS
+ * The full catalog of items available in the market.
+ */
+export const PRODUCTS = [
   {
     id: '1',
     name: 'Organic Bananas',
