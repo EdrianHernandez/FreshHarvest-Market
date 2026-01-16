@@ -1,16 +1,12 @@
 import React, { useMemo } from 'react';
 import { ShoppingBag, X, Trash2, ArrowRight } from 'lucide-react';
-import { CartItem } from '../types';
 
-interface CartSummaryProps {
-  cartItems: CartItem[];
-  onRemove: (id: string) => void;
-  isOpen: boolean;
-  onClose: () => void;
-  onUpdateQuantity: (id: string, delta: number) => void;
-}
-
-export const CartSummary: React.FC<CartSummaryProps> = ({ 
+/**
+ * CartSummary Component
+ * Displays the current items in the shopping cart, calculates subtotal, 
+ * delivery fees, and total price.
+ */
+export const CartSummary = ({ 
   cartItems, 
   onRemove, 
   isOpen, 
