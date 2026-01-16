@@ -3,13 +3,14 @@ import { GrocerySidebar } from './components/GrocerySidebar';
 import { ProductGrid } from './components/ProductGrid';
 import { WeeklyDeals } from './components/WeeklyDeals';
 import { CartSummary } from './components/CartSummary';
-import { CategoryId, Product, CartItem } from './types';
+// Types import removed as it is not used in JavaScript
 import { PRODUCTS, WEEKLY_DEALS } from './constants';
 import { Search, ShoppingBasket, Menu, User, Bell } from 'lucide-react';
 
-const App: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryId>('all');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+const App = () => {
+  // Type generics <CategoryId> and <CartItem[]> removed
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [cartItems, setCartItems] = useState([]);
   const [isMobileCartOpen, setIsMobileCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -27,7 +28,8 @@ const App: React.FC = () => {
   }, [selectedCategory, searchQuery]);
 
   // Cart Actions
-  const addToCart = (product: Product, quantity: number) => {
+  // Type annotations for parameters removed
+  const addToCart = (product, quantity) => {
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
@@ -39,17 +41,17 @@ const App: React.FC = () => {
       }
       return [...prev, { ...product, quantity }];
     });
-    // Optional: Open cart on mobile when adding first item
+    
     if (window.innerWidth < 1280 && cartItems.length === 0) {
         setIsMobileCartOpen(true);
     }
   };
 
-  const removeFromCart = (id: string) => {
+  const removeFromCart = (id) => {
     setCartItems(prev => prev.filter(item => item.id !== id));
   };
 
-  const updateQuantity = (id: string, delta: number) => {
+  const updateQuantity = (id, delta) => {
     setCartItems(prev => prev.map(item => {
       if (item.id === id) {
         return { ...item, quantity: Math.max(1, item.quantity + delta) };
@@ -112,19 +114,14 @@ const App: React.FC = () => {
       </header>
 
       <div className="flex-1 flex max-w-[1600px] mx-auto w-full items-start">
-        {/* Sidebar */}
         <GrocerySidebar 
           selectedCategory={selectedCategory} 
           onSelectCategory={setSelectedCategory}
           className="w-64 sticky top-20 h-[calc(100vh-80px)] overflow-y-auto hidden lg:block"
         />
 
-        {/* Main Content */}
         <main className="flex-1 p-4 lg:p-8 min-w-0">
           <div className="mb-6 lg:hidden overflow-x-auto pb-2 -mx-4 px-4 flex gap-2 scrollbar-hide">
-            {/* Mobile Category Chips could go here if needed, but sidebar handles desktop. 
-                For strict adherence to prompt structure, Sidebar is main nav. 
-            */}
           </div>
 
           {selectedCategory === 'all' && !searchQuery && (
@@ -138,7 +135,6 @@ const App: React.FC = () => {
           />
         </main>
 
-        {/* Cart Summary */}
         <CartSummary 
           cartItems={cartItems} 
           onRemove={removeFromCart}
