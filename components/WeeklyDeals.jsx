@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Timer, ArrowRight, Tag } from 'lucide-react';
 
-export const WeeklyDeals: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number }>({
+/**
+ * WeeklyDeals Component
+ * Renders a promotional banner featuring a countdown timer for a flash sale.
+ */
+export const WeeklyDeals = () => {
+  // Type generic <{ hours: number; minutes: number; seconds: number }> removed
+  const [timeLeft, setTimeLeft] = useState({
     hours: 12,
     minutes: 45,
     seconds: 30,
@@ -30,7 +35,8 @@ export const WeeklyDeals: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const formatTime = (val: number) => val.toString().padStart(2, '0');
+  // Type annotation (val: number) removed
+  const formatTime = (val) => val.toString().padStart(2, '0');
 
   return (
     <div className="mb-8 rounded-2xl bg-gradient-to-r from-brand-700 to-brand-500 text-white overflow-hidden shadow-lg relative">
