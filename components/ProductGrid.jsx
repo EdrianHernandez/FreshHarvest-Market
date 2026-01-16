@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Plus, Check, Star } from 'lucide-react';
-import { Product } from '../types';
 
-interface ProductGridProps {
-  products: Product[];
-  addToCart: (product: Product, quantity: number) => void;
-  title: string;
-}
-
-export const ProductGrid: React.FC<ProductGridProps> = ({ products, addToCart, title }) => {
+/**
+ * ProductGrid Component
+ * Renders a responsive grid of product cards with a title and item count.
+ */
+export const ProductGrid = ({ products, addToCart, title }) => {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between mb-6">
@@ -25,7 +22,11 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, addToCart, t
   );
 };
 
-const ProductCard: React.FC<{ product: Product; onAdd: (p: Product, q: number) => void }> = ({ product, onAdd }) => {
+/**
+ * ProductCard Component
+ * Individual card displaying product details, price, and add-to-cart functionality.
+ */
+const ProductCard = ({ product, onAdd }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
 
